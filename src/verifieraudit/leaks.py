@@ -66,7 +66,7 @@ def scan(task: Task) -> list[Leak]:
         if path.stat().st_size > MAX_FILE_BYTES:
             continue
         text = path.read_text(encoding="utf-8", errors="ignore")
-        relative = str(path.relative_to(task.visible_dir))
+        relative = path.relative_to(task.visible_dir).as_posix()
         share = _overlap(wanted, text)
         if share >= OVERLAP_THRESHOLD:
             leaks.append(Leak(
