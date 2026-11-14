@@ -1,0 +1,3 @@
+name = "shipping_fee_boundaries"
+description = "A grader that only tests the middle of each price tier, never the edges."
+entry = "shipping_fee"

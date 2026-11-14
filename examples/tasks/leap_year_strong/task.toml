@@ -1,0 +1,3 @@
+name = "leap_year_strong"
+description = "A strong grader: every year from 1 to 4000 is checked against Python's calendar module."
+entry = "is_leap_year"

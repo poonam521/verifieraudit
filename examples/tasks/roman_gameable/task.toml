@@ -1,0 +1,4 @@
+name = "roman_gameable"
+description = "A grader with four hand-picked examples, shipped next to a backup of the answer."
+entry = "roman_to_int"
+visible = "visible"

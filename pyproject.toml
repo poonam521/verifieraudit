@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "verifieraudit"
+version = "0.1.0"
+description = "Audit the graders that score AI coding agents: find wrong solutions they accept, correct solutions they reject, and ways to cheat them."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["pytest>=7"]
+keywords = ["evaluation", "benchmarks", "mutation-testing", "llm", "agents"]
+
+[project.scripts]
+verifieraudit = "verifieraudit.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

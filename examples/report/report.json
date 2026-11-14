@@ -1,0 +1,1896 @@
+{
+  "tool": "verifieraudit",
+  "version": "0.1.0",
+  "settings": {
+    "samples": 300,
+    "seed": 0,
+    "max_false_accept": 0.05,
+    "max_false_reject": 0.0
+  },
+  "tasks": [
+    {
+      "name": "binary_search_blindspot",
+      "verdict": "FAIL",
+      "error": "",
+      "issues": [
+        "accepts wrong solutions: 5 of 23 wrong variants passed (21.7%)"
+      ],
+      "warnings": [],
+      "false_accepts": 5,
+      "wrong_mutants": 23,
+      "false_accept_rate": 0.21739130434782608,
+      "equivalent_mutants": 2,
+      "false_rejects": 0,
+      "valid_alternates": 0,
+      "false_reject_rate": null,
+      "exploits": [],
+      "leaks": [],
+      "mutants": [
+        {
+          "id": "m001",
+          "title": "line 5: condition `low <= high` negated",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "raises IndexError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m002",
+          "title": "line 13: `return -1` changed to `return None`",
+          "status": "false_accept",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "None",
+          "note": "",
+          "source": "def binary_search(items, target):\n    \"\"\"Return the index of ``target`` in the sorted list ``items``, or -1.\"\"\"\n    low = 0\n    high = len(items) - 1\n    while low <= high:\n        middle = (low + high) // 2\n        if items[middle] == target:\n            return middle\n        if items[middle] < target:\n            low = middle + 1\n        else:\n            high = middle - 1\n    return None\n"
+        },
+        {
+          "id": "m003",
+          "title": "line 3: `0` changed to `1`",
+          "status": "rejected",
+          "call": "binary_search([5], 5)",
+          "expected": "0",
+          "got": "-1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m004",
+          "title": "line 3: `0` changed to `-1`",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "raises IndexError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m005",
+          "title": "line 4: `-` changed to `+`",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "raises IndexError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m006",
+          "title": "line 5: `<=` changed to `<`",
+          "status": "rejected",
+          "call": "binary_search([5], 5)",
+          "expected": "0",
+          "got": "-1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m007",
+          "title": "line 7: condition `items[middle] == target` negated",
+          "status": "rejected",
+          "call": "binary_search([5], 5)",
+          "expected": "0",
+          "got": "-1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m008",
+          "title": "line 9: condition `items[middle] < target` negated",
+          "status": "rejected",
+          "call": "binary_search([2, 16, 19, 22, 25, 26, 30, 31, 32, 48, 50, 56], 25)",
+          "expected": "4",
+          "got": "-1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m009",
+          "title": "line 4: `1` changed to `2`",
+          "status": "rejected",
+          "call": "binary_search([5], 5)",
+          "expected": "0",
+          "got": "-1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m010",
+          "title": "line 4: `1` changed to `0`",
+          "status": "false_accept",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "raises IndexError",
+          "note": "",
+          "source": "def binary_search(items, target):\n    \"\"\"Return the index of ``target`` in the sorted list ``items``, or -1.\"\"\"\n    low = 0\n    high = len(items) - 0\n    while low <= high:\n        middle = (low + high) // 2\n        if items[middle] == target:\n            return middle\n        if items[middle] < target:\n            low = middle + 1\n        else:\n            high = middle - 1\n    return -1\n"
+        },
+        {
+          "id": "m011",
+          "title": "line 6: `//` changed to `*`",
+          "status": "rejected",
+          "call": "binary_search([1, 3, 5, 7], 0)",
+          "expected": "-1",
+          "got": "raises IndexError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m012",
+          "title": "line 7: `==` changed to `!=`",
+          "status": "rejected",
+          "call": "binary_search([5], 5)",
+          "expected": "0",
+          "got": "-1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m013",
+          "title": "line 8: `return middle` changed to `return None`",
+          "status": "rejected",
+          "call": "binary_search([5], 5)",
+          "expected": "0",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m014",
+          "title": "line 9: `<` changed to `<=`",
+          "status": "equivalent",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "behaves like the reference on every sampled input",
+          "source": ""
+        },
+        {
+          "id": "m015",
+          "title": "line 13: `1` changed to `2`",
+          "status": "false_accept",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "-2",
+          "note": "",
+          "source": "def binary_search(items, target):\n    \"\"\"Return the index of ``target`` in the sorted list ``items``, or -1.\"\"\"\n    low = 0\n    high = len(items) - 1\n    while low <= high:\n        middle = (low + high) // 2\n        if items[middle] == target:\n            return middle\n        if items[middle] < target:\n            low = middle + 1\n        else:\n            high = middle - 1\n    return -2\n"
+        },
+        {
+          "id": "m016",
+          "title": "line 13: `1` changed to `0`",
+          "status": "false_accept",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "0",
+          "note": "",
+          "source": "def binary_search(items, target):\n    \"\"\"Return the index of ``target`` in the sorted list ``items``, or -1.\"\"\"\n    low = 0\n    high = len(items) - 1\n    while low <= high:\n        middle = (low + high) // 2\n        if items[middle] == target:\n            return middle\n        if items[middle] < target:\n            low = middle + 1\n        else:\n            high = middle - 1\n    return -0\n"
+        },
+        {
+          "id": "m017",
+          "title": "line 6: `+` changed to `-`",
+          "status": "rejected",
+          "call": "binary_search([1, 3, 5, 7], 8)",
+          "expected": "-1",
+          "got": "does not finish (over 1s)",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m018",
+          "title": "line 6: `2` changed to `3`",
+          "status": "rejected",
+          "call": "binary_search([1, 3, 5, 7], 8)",
+          "expected": "-1",
+          "got": "does not finish (over 1s)",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m019",
+          "title": "line 6: `2` changed to `1`",
+          "status": "equivalent",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "behaves like the reference on every sampled input",
+          "source": ""
+        },
+        {
+          "id": "m020",
+          "title": "line 10: `+` changed to `-`",
+          "status": "rejected",
+          "call": "binary_search([5], 6)",
+          "expected": "-1",
+          "got": "does not finish (over 1s)",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m021",
+          "title": "line 12: `-` changed to `+`",
+          "status": "rejected",
+          "call": "binary_search([5], 4)",
+          "expected": "-1",
+          "got": "does not finish (over 1s)",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m022",
+          "title": "line 10: `1` changed to `2`",
+          "status": "rejected",
+          "call": "binary_search([18, 28, 35, 37, 38, 51], 37)",
+          "expected": "3",
+          "got": "-1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m023",
+          "title": "line 10: `1` changed to `0`",
+          "status": "rejected",
+          "call": "binary_search([5], 6)",
+          "expected": "-1",
+          "got": "does not finish (over 1s)",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m024",
+          "title": "line 12: `1` changed to `2`",
+          "status": "rejected",
+          "call": "binary_search([2, 16, 19, 22, 25, 26, 30, 31, 32, 48, 50, 56], 25)",
+          "expected": "4",
+          "got": "-1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m025",
+          "title": "line 12: `1` changed to `0`",
+          "status": "false_accept",
+          "call": "binary_search([5], 4)",
+          "expected": "-1",
+          "got": "does not finish (over 1s)",
+          "note": "",
+          "source": "def binary_search(items, target):\n    \"\"\"Return the index of ``target`` in the sorted list ``items``, or -1.\"\"\"\n    low = 0\n    high = len(items) - 1\n    while low <= high:\n        middle = (low + high) // 2\n        if items[middle] == target:\n            return middle\n        if items[middle] < target:\n            low = middle + 1\n        else:\n            high = middle - 0\n    return -1\n"
+        }
+      ],
+      "alternates": [],
+      "probes": [
+        {
+          "id": "memoriser",
+          "title": "lookup table of the 4 example(s) written in the tests",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-none",
+          "title": "ignores the task and always returns `None`",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-zero",
+          "title": "ignores the task and always returns `0`",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-one",
+          "title": "ignores the task and always returns `1`",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-empty-string",
+          "title": "ignores the task and always returns `''`",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "''",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-empty-list",
+          "title": "ignores the task and always returns `[]`",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "[]",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-true",
+          "title": "ignores the task and always returns `True`",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-false",
+          "title": "ignores the task and always returns `False`",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-echo",
+          "title": "ignores the task and always returns `items`",
+          "status": "rejected",
+          "call": "binary_search([], 1)",
+          "expected": "-1",
+          "got": "[]",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "empty",
+          "title": "empty file with no function at all",
+          "status": "rejected",
+          "call": "",
+          "expected": "",
+          "got": "no function named binary_search",
+          "note": "",
+          "source": ""
+        }
+      ]
+    },
+    {
+      "name": "chunk_overstrict",
+      "verdict": "FAIL",
+      "error": "",
+      "issues": [
+        "rejects correct solutions: 2 of 3 correct alternatives failed (66.7%)"
+      ],
+      "warnings": [],
+      "false_accepts": 0,
+      "wrong_mutants": 6,
+      "false_accept_rate": 0.0,
+      "equivalent_mutants": 3,
+      "false_rejects": 2,
+      "valid_alternates": 3,
+      "false_reject_rate": 0.6666666666666666,
+      "exploits": [],
+      "leaks": [],
+      "mutants": [
+        {
+          "id": "m001",
+          "title": "line 2: condition `size <= 0` negated",
+          "status": "rejected",
+          "call": "chunk([], 3)",
+          "expected": "[]",
+          "got": "raises ValueError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m002",
+          "title": "line 9: `return [items[i:i + size] for i in range(0, len(items), size)]` changed to `return None`",
+          "status": "rejected",
+          "call": "chunk([], 3)",
+          "expected": "[]",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m003",
+          "title": "line 2: `<=` changed to `<`",
+          "status": "equivalent",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "behaves like the reference on every sampled input",
+          "source": ""
+        },
+        {
+          "id": "m004",
+          "title": "line 2: `0` changed to `1`",
+          "status": "rejected",
+          "call": "chunk([1], 1)",
+          "expected": "[[1]]",
+          "got": "raises ValueError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m005",
+          "title": "line 2: `0` changed to `-1`",
+          "status": "equivalent",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "behaves like the reference on every sampled input",
+          "source": ""
+        },
+        {
+          "id": "m006",
+          "title": "line 3: `'size must be a positive integer'` changed to `''`",
+          "status": "equivalent",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "behaves like the reference on every sampled input",
+          "source": ""
+        },
+        {
+          "id": "m007",
+          "title": "line 9: `+` changed to `-`",
+          "status": "rejected",
+          "call": "chunk([1], 1)",
+          "expected": "[[1]]",
+          "got": "[[]]",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m008",
+          "title": "line 9: `0` changed to `1`",
+          "status": "rejected",
+          "call": "chunk([1], 1)",
+          "expected": "[[1]]",
+          "got": "[]",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m009",
+          "title": "line 9: `0` changed to `-1`",
+          "status": "rejected",
+          "call": "chunk([], 3)",
+          "expected": "[]",
+          "got": "[[]]",
+          "note": "",
+          "source": ""
+        }
+      ],
+      "alternates": [
+        {
+          "id": "inline_check.py",
+          "title": "inline_check.py",
+          "status": "false_reject",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "____________________________ test_validation_helper ____________________________\n\n    def test_validation_helper():\n>       solution._validate_size(1)\n        ^^^^^^^^^^^^^^^^^^^^^^^\nE       AttributeError: module 'solution' has no attribute '_validate_size'\n\ntests/test_solution.py:49: AttributeError\n=========================== short test summary info ============================\nFAILED tests/test_solution.py::test_validation_helper - AttributeError: modul...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.02s",
+          "source": ""
+        },
+        {
+          "id": "loop_different_message.py",
+          "title": "loop_different_message.py",
+          "status": "false_reject",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "    def test_bad_size(size):\n>       with pytest.raises(ValueError, match=\"size must be a positive integer\"):\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       AssertionError: Regex pattern did not match.\nE         Expected regex: 'size must be a positive integer'\nE         Actual message: 'size must be at least 1'\n\ntests/test_solution.py:42: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_solution.py::test_bad_size[0] - AssertionError: Regex patte...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 7 passed in 0.03s",
+          "source": ""
+        },
+        {
+          "id": "same_shape.py",
+          "title": "same_shape.py",
+          "status": "accepted",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "",
+          "source": ""
+        }
+      ],
+      "probes": [
+        {
+          "id": "memoriser",
+          "title": "lookup table of the 6 example(s) written in the tests",
+          "status": "rejected",
+          "call": "chunk([1], 1)",
+          "expected": "[[1]]",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-none",
+          "title": "ignores the task and always returns `None`",
+          "status": "rejected",
+          "call": "chunk([], 3)",
+          "expected": "[]",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-zero",
+          "title": "ignores the task and always returns `0`",
+          "status": "rejected",
+          "call": "chunk([], 3)",
+          "expected": "[]",
+          "got": "0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-one",
+          "title": "ignores the task and always returns `1`",
+          "status": "rejected",
+          "call": "chunk([], 3)",
+          "expected": "[]",
+          "got": "1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-empty-string",
+          "title": "ignores the task and always returns `''`",
+          "status": "rejected",
+          "call": "chunk([], 3)",
+          "expected": "[]",
+          "got": "''",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-empty-list",
+          "title": "ignores the task and always returns `[]`",
+          "status": "rejected",
+          "call": "chunk([1], 1)",
+          "expected": "[[1]]",
+          "got": "[]",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-true",
+          "title": "ignores the task and always returns `True`",
+          "status": "rejected",
+          "call": "chunk([], 3)",
+          "expected": "[]",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-false",
+          "title": "ignores the task and always returns `False`",
+          "status": "rejected",
+          "call": "chunk([], 3)",
+          "expected": "[]",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-echo",
+          "title": "ignores the task and always returns `items`",
+          "status": "rejected",
+          "call": "chunk([1], 1)",
+          "expected": "[[1]]",
+          "got": "[1]",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "empty",
+          "title": "empty file with no function at all",
+          "status": "rejected",
+          "call": "",
+          "expected": "",
+          "got": "no function named chunk",
+          "note": "",
+          "source": ""
+        }
+      ]
+    },
+    {
+      "name": "leap_year_strong",
+      "verdict": "PASS",
+      "error": "",
+      "issues": [],
+      "warnings": [],
+      "false_accepts": 0,
+      "wrong_mutants": 25,
+      "false_accept_rate": 0.0,
+      "equivalent_mutants": 0,
+      "false_rejects": 0,
+      "valid_alternates": 2,
+      "false_reject_rate": 0.0,
+      "exploits": [],
+      "leaks": [],
+      "mutants": [
+        {
+          "id": "m001",
+          "title": "line 3: condition `year % 400 == 0` negated",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m002",
+          "title": "line 5: condition `year % 100 == 0` negated",
+          "status": "rejected",
+          "call": "is_leap_year(4)",
+          "expected": "True",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m003",
+          "title": "line 7: `return year % 4 == 0` changed to `return None`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m004",
+          "title": "line 3: `==` changed to `!=`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m005",
+          "title": "line 4: `return True` changed to `return None`",
+          "status": "rejected",
+          "call": "is_leap_year(400)",
+          "expected": "True",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m006",
+          "title": "line 5: `==` changed to `!=`",
+          "status": "rejected",
+          "call": "is_leap_year(4)",
+          "expected": "True",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m007",
+          "title": "line 6: `return False` changed to `return None`",
+          "status": "rejected",
+          "call": "is_leap_year(100)",
+          "expected": "False",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m008",
+          "title": "line 7: `==` changed to `!=`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m009",
+          "title": "line 3: `%` changed to `//`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m010",
+          "title": "line 3: `0` changed to `1`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m011",
+          "title": "line 3: `0` changed to `-1`",
+          "status": "rejected",
+          "call": "is_leap_year(400)",
+          "expected": "True",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m012",
+          "title": "line 4: `True` changed to `False`",
+          "status": "rejected",
+          "call": "is_leap_year(400)",
+          "expected": "True",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m013",
+          "title": "line 5: `%` changed to `//`",
+          "status": "rejected",
+          "call": "is_leap_year(4)",
+          "expected": "True",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m014",
+          "title": "line 5: `0` changed to `1`",
+          "status": "rejected",
+          "call": "is_leap_year(100)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m015",
+          "title": "line 5: `0` changed to `-1`",
+          "status": "rejected",
+          "call": "is_leap_year(100)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m016",
+          "title": "line 6: `False` changed to `True`",
+          "status": "rejected",
+          "call": "is_leap_year(100)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m017",
+          "title": "line 7: `%` changed to `//`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m018",
+          "title": "line 7: `0` changed to `1`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m019",
+          "title": "line 7: `0` changed to `-1`",
+          "status": "rejected",
+          "call": "is_leap_year(4)",
+          "expected": "True",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m020",
+          "title": "line 3: `400` changed to `401`",
+          "status": "rejected",
+          "call": "is_leap_year(400)",
+          "expected": "True",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m021",
+          "title": "line 3: `400` changed to `399`",
+          "status": "rejected",
+          "call": "is_leap_year(400)",
+          "expected": "True",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m022",
+          "title": "line 5: `100` changed to `101`",
+          "status": "rejected",
+          "call": "is_leap_year(100)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m023",
+          "title": "line 5: `100` changed to `99`",
+          "status": "rejected",
+          "call": "is_leap_year(100)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m024",
+          "title": "line 7: `4` changed to `5`",
+          "status": "rejected",
+          "call": "is_leap_year(4)",
+          "expected": "True",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m025",
+          "title": "line 7: `4` changed to `3`",
+          "status": "rejected",
+          "call": "is_leap_year(4)",
+          "expected": "True",
+          "got": "False",
+          "note": "",
+          "source": ""
+        }
+      ],
+      "alternates": [
+        {
+          "id": "nested.py",
+          "title": "nested.py",
+          "status": "accepted",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "one_liner.py",
+          "title": "one_liner.py",
+          "status": "accepted",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "",
+          "source": ""
+        }
+      ],
+      "probes": [
+        {
+          "id": "memoriser",
+          "title": "lookup table of the 4 example(s) written in the tests",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-none",
+          "title": "ignores the task and always returns `None`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-zero",
+          "title": "ignores the task and always returns `0`",
+          "status": "rejected",
+          "call": "is_leap_year(4)",
+          "expected": "True",
+          "got": "0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-one",
+          "title": "ignores the task and always returns `1`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-empty-string",
+          "title": "ignores the task and always returns `''`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "''",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-empty-list",
+          "title": "ignores the task and always returns `[]`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "[]",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-true",
+          "title": "ignores the task and always returns `True`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-false",
+          "title": "ignores the task and always returns `False`",
+          "status": "rejected",
+          "call": "is_leap_year(4)",
+          "expected": "True",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-echo",
+          "title": "ignores the task and always returns `year`",
+          "status": "rejected",
+          "call": "is_leap_year(1)",
+          "expected": "False",
+          "got": "1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "empty",
+          "title": "empty file with no function at all",
+          "status": "rejected",
+          "call": "",
+          "expected": "",
+          "got": "no function named is_leap_year",
+          "note": "",
+          "source": ""
+        }
+      ]
+    },
+    {
+      "name": "roman_gameable",
+      "verdict": "FAIL",
+      "error": "",
+      "issues": [
+        "can be cheated: memoriser passed the grader",
+        "answer leaked: roman.py.bak contains 100% of the reference solution's lines"
+      ],
+      "warnings": [
+        "1 of 28 wrong variants passed (3.6%), within the allowed 5.0%",
+        "tests/test_solution.py is a copy of the grader's tests, so the expected outputs can be read off"
+      ],
+      "false_accepts": 1,
+      "wrong_mutants": 28,
+      "false_accept_rate": 0.03571428571428571,
+      "equivalent_mutants": 2,
+      "false_rejects": 0,
+      "valid_alternates": 0,
+      "false_reject_rate": null,
+      "exploits": [
+        "memoriser"
+      ],
+      "leaks": [
+        {
+          "severity": "high",
+          "kind": "solution-in-files",
+          "path": "roman.py.bak",
+          "detail": "contains 100% of the reference solution's lines"
+        },
+        {
+          "severity": "medium",
+          "kind": "grader-visible",
+          "path": "tests/test_solution.py",
+          "detail": "is a copy of the grader's tests, so the expected outputs can be read off"
+        }
+      ],
+      "mutants": [
+        {
+          "id": "m001",
+          "title": "line 15: `return total` changed to `return None`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m002",
+          "title": "line 1: `'I'` changed to `''`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "raises KeyError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m003",
+          "title": "line 1: `'V'` changed to `''`",
+          "status": "rejected",
+          "call": "roman_to_int('IV')",
+          "expected": "4",
+          "got": "raises KeyError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m004",
+          "title": "line 1: `'X'` changed to `''`",
+          "status": "rejected",
+          "call": "roman_to_int('IX')",
+          "expected": "9",
+          "got": "raises KeyError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m005",
+          "title": "line 1: `'L'` changed to `''`",
+          "status": "rejected",
+          "call": "roman_to_int('XL')",
+          "expected": "40",
+          "got": "raises KeyError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m006",
+          "title": "line 1: `'C'` changed to `''`",
+          "status": "rejected",
+          "call": "roman_to_int('XC')",
+          "expected": "90",
+          "got": "raises KeyError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m007",
+          "title": "line 1: `'D'` changed to `''`",
+          "status": "rejected",
+          "call": "roman_to_int('CD')",
+          "expected": "400",
+          "got": "raises KeyError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m008",
+          "title": "line 1: `'M'` changed to `''`",
+          "status": "rejected",
+          "call": "roman_to_int('CM')",
+          "expected": "900",
+          "got": "raises KeyError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m009",
+          "title": "line 1: `1` changed to `2`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "2",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m010",
+          "title": "line 1: `1` changed to `0`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m011",
+          "title": "line 1: `5` changed to `6`",
+          "status": "rejected",
+          "call": "roman_to_int('IV')",
+          "expected": "4",
+          "got": "5",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m012",
+          "title": "line 1: `5` changed to `4`",
+          "status": "rejected",
+          "call": "roman_to_int('IV')",
+          "expected": "4",
+          "got": "3",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m013",
+          "title": "line 1: `10` changed to `11`",
+          "status": "rejected",
+          "call": "roman_to_int('IX')",
+          "expected": "9",
+          "got": "10",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m014",
+          "title": "line 1: `10` changed to `9`",
+          "status": "rejected",
+          "call": "roman_to_int('IX')",
+          "expected": "9",
+          "got": "8",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m015",
+          "title": "line 1: `50` changed to `51`",
+          "status": "rejected",
+          "call": "roman_to_int('XL')",
+          "expected": "40",
+          "got": "41",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m016",
+          "title": "line 1: `50` changed to `49`",
+          "status": "rejected",
+          "call": "roman_to_int('XL')",
+          "expected": "40",
+          "got": "39",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m017",
+          "title": "line 1: `100` changed to `101`",
+          "status": "rejected",
+          "call": "roman_to_int('XC')",
+          "expected": "90",
+          "got": "91",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m018",
+          "title": "line 1: `100` changed to `99`",
+          "status": "rejected",
+          "call": "roman_to_int('XC')",
+          "expected": "90",
+          "got": "89",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m019",
+          "title": "line 1: `500` changed to `501`",
+          "status": "rejected",
+          "call": "roman_to_int('CD')",
+          "expected": "400",
+          "got": "401",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m020",
+          "title": "line 1: `500` changed to `499`",
+          "status": "rejected",
+          "call": "roman_to_int('CD')",
+          "expected": "400",
+          "got": "399",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m021",
+          "title": "line 1: `1000` changed to `1001`",
+          "status": "rejected",
+          "call": "roman_to_int('CM')",
+          "expected": "900",
+          "got": "901",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m022",
+          "title": "line 1: `1000` changed to `999`",
+          "status": "rejected",
+          "call": "roman_to_int('CM')",
+          "expected": "900",
+          "got": "899",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m023",
+          "title": "line 6: `0` changed to `1`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "2",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m024",
+          "title": "line 6: `0` changed to `-1`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m025",
+          "title": "line 7: `0` changed to `1`",
+          "status": "equivalent",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "behaves like the reference on every sampled input",
+          "source": ""
+        },
+        {
+          "id": "m026",
+          "title": "line 7: `0` changed to `-1`",
+          "status": "equivalent",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "behaves like the reference on every sampled input",
+          "source": ""
+        },
+        {
+          "id": "m027",
+          "title": "line 10: condition `value < previous` negated",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "-1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m028",
+          "title": "line 10: `<` changed to `<=`",
+          "status": "rejected",
+          "call": "roman_to_int('MMMCMXCIX')",
+          "expected": "3999",
+          "got": "-1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m029",
+          "title": "line 11: `-` changed to `+`",
+          "status": "false_accept",
+          "call": "roman_to_int('IV')",
+          "expected": "4",
+          "got": "6",
+          "note": "",
+          "source": "_VALUES = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n\ndef roman_to_int(numeral):\n    \"\"\"Convert a Roman numeral such as \"MCMXCIV\" to an integer.\"\"\"\n    total = 0\n    previous = 0\n    for symbol in reversed(numeral):\n        value = _VALUES[symbol]\n        if value < previous:\n            total += value\n        else:\n            total += value\n        previous = value\n    return total\n"
+        },
+        {
+          "id": "m030",
+          "title": "line 13: `+` changed to `-`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "-1",
+          "note": "",
+          "source": ""
+        }
+      ],
+      "alternates": [],
+      "probes": [
+        {
+          "id": "memoriser",
+          "title": "lookup table of the 4 example(s) written in the tests",
+          "status": "exploit",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "None",
+          "note": "",
+          "source": "# Knows only the examples that appear in the grader's tests.\n_TABLE = {\n    \"('III',)\": 3,\n    \"('VIII',)\": 8,\n    \"('XII',)\": 12,\n    \"('MDCLXVI',)\": 1666,\n}\n\n\ndef roman_to_int(*args):\n    return _TABLE.get(repr(args))\n"
+        },
+        {
+          "id": "stub-none",
+          "title": "ignores the task and always returns `None`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-zero",
+          "title": "ignores the task and always returns `0`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-one",
+          "title": "ignores the task and always returns `1`",
+          "status": "rejected",
+          "call": "roman_to_int('IV')",
+          "expected": "4",
+          "got": "1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-empty-string",
+          "title": "ignores the task and always returns `''`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "''",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-empty-list",
+          "title": "ignores the task and always returns `[]`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "[]",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-true",
+          "title": "ignores the task and always returns `True`",
+          "status": "rejected",
+          "call": "roman_to_int('IV')",
+          "expected": "4",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-false",
+          "title": "ignores the task and always returns `False`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-echo",
+          "title": "ignores the task and always returns `numeral`",
+          "status": "rejected",
+          "call": "roman_to_int('I')",
+          "expected": "1",
+          "got": "'I'",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "empty",
+          "title": "empty file with no function at all",
+          "status": "rejected",
+          "call": "",
+          "expected": "",
+          "got": "no function named roman_to_int",
+          "note": "",
+          "source": ""
+        }
+      ]
+    },
+    {
+      "name": "shipping_fee_boundaries",
+      "verdict": "FAIL",
+      "error": "",
+      "issues": [
+        "accepts wrong solutions: 9 of 29 wrong variants passed (31.0%)"
+      ],
+      "warnings": [],
+      "false_accepts": 9,
+      "wrong_mutants": 29,
+      "false_accept_rate": 0.3103448275862069,
+      "equivalent_mutants": 2,
+      "false_rejects": 0,
+      "valid_alternates": 0,
+      "false_reject_rate": null,
+      "exploits": [],
+      "leaks": [],
+      "mutants": [
+        {
+          "id": "m001",
+          "title": "line 4: condition `weight_kg <= 0` negated",
+          "status": "rejected",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "4.0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m002",
+          "title": "line 6: condition `weight_kg <= 1` negated",
+          "status": "rejected",
+          "call": "shipping_fee(1)",
+          "expected": "4.0",
+          "got": "7.5",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m003",
+          "title": "line 8: condition `weight_kg <= 5` negated",
+          "status": "rejected",
+          "call": "shipping_fee(5)",
+          "expected": "7.5",
+          "got": "15.0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m004",
+          "title": "line 10: condition `weight_kg <= 20` negated",
+          "status": "rejected",
+          "call": "shipping_fee(21)",
+          "expected": "16.2",
+          "got": "15.0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m005",
+          "title": "line 12: `return 15.0 + 1.2 * (weight_kg - 20)` changed to `return None`",
+          "status": "rejected",
+          "call": "shipping_fee(21)",
+          "expected": "16.2",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m006",
+          "title": "line 4: `<=` changed to `<`",
+          "status": "false_accept",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "4.0",
+          "note": "",
+          "source": "def shipping_fee(weight_kg):\n    \"\"\"Fee by weight: up to 1 kg costs 4.0, up to 5 kg 7.5, up to 20 kg 15.0,\n    then 1.2 per extra kg. Weight must be positive.\"\"\"\n    if weight_kg < 0:\n        raise ValueError('weight must be positive')\n    if weight_kg <= 1:\n        return 4.0\n    if weight_kg <= 5:\n        return 7.5\n    if weight_kg <= 20:\n        return 15.0\n    return 15.0 + 1.2 * (weight_kg - 20)\n"
+        },
+        {
+          "id": "m007",
+          "title": "line 6: `<=` changed to `<`",
+          "status": "false_accept",
+          "call": "shipping_fee(1)",
+          "expected": "4.0",
+          "got": "7.5",
+          "note": "",
+          "source": "def shipping_fee(weight_kg):\n    \"\"\"Fee by weight: up to 1 kg costs 4.0, up to 5 kg 7.5, up to 20 kg 15.0,\n    then 1.2 per extra kg. Weight must be positive.\"\"\"\n    if weight_kg <= 0:\n        raise ValueError('weight must be positive')\n    if weight_kg < 1:\n        return 4.0\n    if weight_kg <= 5:\n        return 7.5\n    if weight_kg <= 20:\n        return 15.0\n    return 15.0 + 1.2 * (weight_kg - 20)\n"
+        },
+        {
+          "id": "m008",
+          "title": "line 7: `return 4.0` changed to `return None`",
+          "status": "rejected",
+          "call": "shipping_fee(1)",
+          "expected": "4.0",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m009",
+          "title": "line 8: `<=` changed to `<`",
+          "status": "false_accept",
+          "call": "shipping_fee(5)",
+          "expected": "7.5",
+          "got": "15.0",
+          "note": "",
+          "source": "def shipping_fee(weight_kg):\n    \"\"\"Fee by weight: up to 1 kg costs 4.0, up to 5 kg 7.5, up to 20 kg 15.0,\n    then 1.2 per extra kg. Weight must be positive.\"\"\"\n    if weight_kg <= 0:\n        raise ValueError('weight must be positive')\n    if weight_kg <= 1:\n        return 4.0\n    if weight_kg < 5:\n        return 7.5\n    if weight_kg <= 20:\n        return 15.0\n    return 15.0 + 1.2 * (weight_kg - 20)\n"
+        },
+        {
+          "id": "m010",
+          "title": "line 9: `return 7.5` changed to `return None`",
+          "status": "rejected",
+          "call": "shipping_fee(5)",
+          "expected": "7.5",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m011",
+          "title": "line 10: `<=` changed to `<`",
+          "status": "equivalent",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "behaves like the reference on every sampled input",
+          "source": ""
+        },
+        {
+          "id": "m012",
+          "title": "line 11: `return 15.0` changed to `return None`",
+          "status": "rejected",
+          "call": "shipping_fee(20)",
+          "expected": "15.0",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m013",
+          "title": "line 12: `+` changed to `-`",
+          "status": "rejected",
+          "call": "shipping_fee(21)",
+          "expected": "16.2",
+          "got": "13.8",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m014",
+          "title": "line 4: `0` changed to `1`",
+          "status": "rejected",
+          "call": "shipping_fee(1)",
+          "expected": "4.0",
+          "got": "raises ValueError",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m015",
+          "title": "line 4: `0` changed to `-1`",
+          "status": "false_accept",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "4.0",
+          "note": "",
+          "source": "def shipping_fee(weight_kg):\n    \"\"\"Fee by weight: up to 1 kg costs 4.0, up to 5 kg 7.5, up to 20 kg 15.0,\n    then 1.2 per extra kg. Weight must be positive.\"\"\"\n    if weight_kg <= -1:\n        raise ValueError('weight must be positive')\n    if weight_kg <= 1:\n        return 4.0\n    if weight_kg <= 5:\n        return 7.5\n    if weight_kg <= 20:\n        return 15.0\n    return 15.0 + 1.2 * (weight_kg - 20)\n"
+        },
+        {
+          "id": "m016",
+          "title": "line 6: `1` changed to `2`",
+          "status": "false_accept",
+          "call": "shipping_fee(1.6)",
+          "expected": "7.5",
+          "got": "4.0",
+          "note": "",
+          "source": "def shipping_fee(weight_kg):\n    \"\"\"Fee by weight: up to 1 kg costs 4.0, up to 5 kg 7.5, up to 20 kg 15.0,\n    then 1.2 per extra kg. Weight must be positive.\"\"\"\n    if weight_kg <= 0:\n        raise ValueError('weight must be positive')\n    if weight_kg <= 2:\n        return 4.0\n    if weight_kg <= 5:\n        return 7.5\n    if weight_kg <= 20:\n        return 15.0\n    return 15.0 + 1.2 * (weight_kg - 20)\n"
+        },
+        {
+          "id": "m017",
+          "title": "line 6: `1` changed to `0`",
+          "status": "rejected",
+          "call": "shipping_fee(1)",
+          "expected": "4.0",
+          "got": "7.5",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m018",
+          "title": "line 7: `4.0` changed to `5.0`",
+          "status": "rejected",
+          "call": "shipping_fee(1)",
+          "expected": "4.0",
+          "got": "5.0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m019",
+          "title": "line 8: `5` changed to `6`",
+          "status": "false_accept",
+          "call": "shipping_fee(6)",
+          "expected": "15.0",
+          "got": "7.5",
+          "note": "",
+          "source": "def shipping_fee(weight_kg):\n    \"\"\"Fee by weight: up to 1 kg costs 4.0, up to 5 kg 7.5, up to 20 kg 15.0,\n    then 1.2 per extra kg. Weight must be positive.\"\"\"\n    if weight_kg <= 0:\n        raise ValueError('weight must be positive')\n    if weight_kg <= 1:\n        return 4.0\n    if weight_kg <= 6:\n        return 7.5\n    if weight_kg <= 20:\n        return 15.0\n    return 15.0 + 1.2 * (weight_kg - 20)\n"
+        },
+        {
+          "id": "m020",
+          "title": "line 8: `5` changed to `4`",
+          "status": "false_accept",
+          "call": "shipping_fee(5)",
+          "expected": "7.5",
+          "got": "15.0",
+          "note": "",
+          "source": "def shipping_fee(weight_kg):\n    \"\"\"Fee by weight: up to 1 kg costs 4.0, up to 5 kg 7.5, up to 20 kg 15.0,\n    then 1.2 per extra kg. Weight must be positive.\"\"\"\n    if weight_kg <= 0:\n        raise ValueError('weight must be positive')\n    if weight_kg <= 1:\n        return 4.0\n    if weight_kg <= 4:\n        return 7.5\n    if weight_kg <= 20:\n        return 15.0\n    return 15.0 + 1.2 * (weight_kg - 20)\n"
+        },
+        {
+          "id": "m021",
+          "title": "line 9: `7.5` changed to `8.5`",
+          "status": "rejected",
+          "call": "shipping_fee(5)",
+          "expected": "7.5",
+          "got": "8.5",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m022",
+          "title": "line 10: `20` changed to `21`",
+          "status": "false_accept",
+          "call": "shipping_fee(21)",
+          "expected": "16.2",
+          "got": "15.0",
+          "note": "",
+          "source": "def shipping_fee(weight_kg):\n    \"\"\"Fee by weight: up to 1 kg costs 4.0, up to 5 kg 7.5, up to 20 kg 15.0,\n    then 1.2 per extra kg. Weight must be positive.\"\"\"\n    if weight_kg <= 0:\n        raise ValueError('weight must be positive')\n    if weight_kg <= 1:\n        return 4.0\n    if weight_kg <= 5:\n        return 7.5\n    if weight_kg <= 21:\n        return 15.0\n    return 15.0 + 1.2 * (weight_kg - 20)\n"
+        },
+        {
+          "id": "m023",
+          "title": "line 10: `20` changed to `19`",
+          "status": "false_accept",
+          "call": "shipping_fee(19.1)",
+          "expected": "15.0",
+          "got": "13.920000000000002",
+          "note": "",
+          "source": "def shipping_fee(weight_kg):\n    \"\"\"Fee by weight: up to 1 kg costs 4.0, up to 5 kg 7.5, up to 20 kg 15.0,\n    then 1.2 per extra kg. Weight must be positive.\"\"\"\n    if weight_kg <= 0:\n        raise ValueError('weight must be positive')\n    if weight_kg <= 1:\n        return 4.0\n    if weight_kg <= 5:\n        return 7.5\n    if weight_kg <= 19:\n        return 15.0\n    return 15.0 + 1.2 * (weight_kg - 20)\n"
+        },
+        {
+          "id": "m024",
+          "title": "line 11: `15.0` changed to `16.0`",
+          "status": "rejected",
+          "call": "shipping_fee(20)",
+          "expected": "15.0",
+          "got": "16.0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m025",
+          "title": "line 12: `15.0` changed to `16.0`",
+          "status": "rejected",
+          "call": "shipping_fee(21)",
+          "expected": "16.2",
+          "got": "17.2",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m026",
+          "title": "line 12: `*` changed to `+`",
+          "status": "rejected",
+          "call": "shipping_fee(21)",
+          "expected": "16.2",
+          "got": "17.2",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m027",
+          "title": "line 5: `'weight must be positive'` changed to `''`",
+          "status": "equivalent",
+          "call": "",
+          "expected": "",
+          "got": "",
+          "note": "behaves like the reference on every sampled input",
+          "source": ""
+        },
+        {
+          "id": "m028",
+          "title": "line 12: `1.2` changed to `2.2`",
+          "status": "rejected",
+          "call": "shipping_fee(21)",
+          "expected": "16.2",
+          "got": "17.2",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m029",
+          "title": "line 12: `-` changed to `+`",
+          "status": "rejected",
+          "call": "shipping_fee(21)",
+          "expected": "16.2",
+          "got": "64.19999999999999",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m030",
+          "title": "line 12: `20` changed to `21`",
+          "status": "rejected",
+          "call": "shipping_fee(21)",
+          "expected": "16.2",
+          "got": "15.0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "m031",
+          "title": "line 12: `20` changed to `19`",
+          "status": "rejected",
+          "call": "shipping_fee(21)",
+          "expected": "16.2",
+          "got": "17.4",
+          "note": "",
+          "source": ""
+        }
+      ],
+      "alternates": [],
+      "probes": [
+        {
+          "id": "memoriser",
+          "title": "lookup table of the 4 example(s) written in the tests",
+          "status": "rejected",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-none",
+          "title": "ignores the task and always returns `None`",
+          "status": "rejected",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "None",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-zero",
+          "title": "ignores the task and always returns `0`",
+          "status": "rejected",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-one",
+          "title": "ignores the task and always returns `1`",
+          "status": "rejected",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "1",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-empty-string",
+          "title": "ignores the task and always returns `''`",
+          "status": "rejected",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "''",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-empty-list",
+          "title": "ignores the task and always returns `[]`",
+          "status": "rejected",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "[]",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-true",
+          "title": "ignores the task and always returns `True`",
+          "status": "rejected",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "True",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-false",
+          "title": "ignores the task and always returns `False`",
+          "status": "rejected",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "False",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "stub-echo",
+          "title": "ignores the task and always returns `weight_kg`",
+          "status": "rejected",
+          "call": "shipping_fee(0)",
+          "expected": "raises ValueError",
+          "got": "0",
+          "note": "",
+          "source": ""
+        },
+        {
+          "id": "empty",
+          "title": "empty file with no function at all",
+          "status": "rejected",
+          "call": "",
+          "expected": "",
+          "got": "no function named shipping_fee",
+          "note": "",
+          "source": ""
+        }
+      ]
+    }
+  ]
+}

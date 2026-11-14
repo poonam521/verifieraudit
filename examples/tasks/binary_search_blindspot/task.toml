@@ -1,0 +1,4 @@
+name = "binary_search_blindspot"
+description = "A grader with a randomised test that looks thorough but only ever searches for values that are present."
+entry = "binary_search"
+timeout = 4

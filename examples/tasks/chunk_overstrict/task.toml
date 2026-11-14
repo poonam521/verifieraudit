@@ -1,0 +1,3 @@
+name = "chunk_overstrict"
+description = "A grader that checks behaviour well but also checks a private helper and an exact error message."
+entry = "chunk"
